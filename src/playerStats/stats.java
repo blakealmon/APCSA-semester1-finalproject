@@ -1,4 +1,4 @@
-package playerStats;
+package src.playerStats;
 
 import java.util.concurrent.TimeUnit;
 

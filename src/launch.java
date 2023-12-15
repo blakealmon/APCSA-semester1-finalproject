@@ -1,6 +1,9 @@
+package src;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import storyline.tutorial;
+
+import src.playerStats.stats;
+import src.storyline.tutorial;
 
 public class launch {
 
@@ -76,7 +79,9 @@ public class launch {
 
         clearScreen();
         
-        tutorial myTutorial = new tutorial(true);
+        Scanner tutorialScanner = new Scanner(System.in);
+
+        tutorial myTutorial = new tutorial(true, tutorialScanner);
         myTutorial.tutorialStart();
     }
 
@@ -84,5 +89,18 @@ public class launch {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
+
+
+    public String scannerStringInput(){
+
+        Scanner statsInput = new Scanner(System.in);
+        String theInput = statsInput.nextLine();
+
+        statsInput.close();
+
+        return theInput;
+
+    }
+
    
 }

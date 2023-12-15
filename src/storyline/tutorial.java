@@ -1,15 +1,20 @@
-package storyline;
+package src.storyline;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import playerStats.*;
+
+import src.launch;
+import src.playerStats.*;
 
 public class tutorial {
     
     private boolean begin;
+    private Scanner scanner;
 
-    public tutorial(boolean begin){
+    public tutorial(boolean begin, Scanner scanner){
         this.begin = begin;
+        this.scanner = scanner;
     }
+
 
     public boolean getBegin(){
         return begin;
@@ -34,17 +39,14 @@ public class tutorial {
 
         // WILL ADD GAME LOOP AND REMOVE THIS IF STATEMENT FOR STATS
 
-        Scanner statsInput = new Scanner(System.in);
-        String theInput = statsInput.nextLine();
+        String statsInput = scanner.nextLine();
 
-        
-
-        if(theInput.equals("stats")){
+        if(statsInput.equals("stats")){
             stats myStats = new stats();
 
             String playerStats = myStats.toString();
 
-            statsInput.close();
+            
 
             for (int count=0; count < playerStats.length(); count++){
                 System.out.print(playerStats.charAt(count));
@@ -52,8 +54,24 @@ public class tutorial {
             }
         }
         else{
-            statsInput.close();
             
+            clearScreen();
+
+            String badInput = "bad input. Try again";
+
+            for (int count=0; count < badInput.length(); count++){
+                System.out.print(statsHowTo.charAt(count));
+                TimeUnit.MILLISECONDS.sleep(40);
+            }
+
+             TimeUnit.MILLISECONDS.sleep(750);
+
+             tutorialStart();
         }
     }
+
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
 }
