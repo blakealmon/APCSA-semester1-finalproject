@@ -42,7 +42,7 @@ public class tutorial {
         String statsInput = scanner.nextLine();
 
         if(statsInput.equals("stats")){
-            stats myStats = new stats();
+            Stats myStats = new Stats();
 
             String playerStats = myStats.toString();
 

@@ -1,30 +1,30 @@
 package src.playerStats;
 
 import java.util.concurrent.TimeUnit;
+import src.Items.Item;
 
-public class stats {
-    
-    int health = 100;
-   
+public class Stats {
 
-    int shield = 100;
+    private int health = 100;
+    private int shield = 100;
+    private int arrows = 25;
+    private int apples = 2;
+    private int crackers = 1;
+    private int awakeLevel = 10;
+    private Item[] hotbar = new Item[3];
 
-    int arrows = 25;
+    public Stats() {
 
-
-    int apples = 2;
-    int crackers = 1;
-
-    public stats(){
-        
     }
 
+    public String toString() {
+        String playerStats = "MAIN PLAYER STATS" + "\n" + "health : " + getHealth() + "\n" + "shield : " + getShield()
+                + "\n" + "arrows : " + getArrows() + "\n" + "apples : " + getApples() + "\n" + "crackers : "
+                + getCrackers() + "\n";
 
-    public String toString(){
-        String playerStats =  "MAIN PLAYER STATS" + "\n" + "health : " + getHealth() + "\n" + "shield : " + getShield() + "\n" + "arrows : " + getArrows() + "\n" + "apples : " + getApples() + "\n" + "crackers : " + getCrackers() + "\n";
-        
         return playerStats;
     }
+
     // ---- SETTERS ----
 
     public void setHealth(int health) {
@@ -47,9 +47,12 @@ public class stats {
         this.crackers = crackers;
     }
 
+    public void setAwakeLevel(int awakeLevel) {
+        this.awakeLevel = awakeLevel;
+    }
 
     // ---- GETTERS ----
-    
+
     public int getHealth() {
         return health;
     }
@@ -68,5 +71,9 @@ public class stats {
 
     public int getCrackers() {
         return crackers;
+    }
+
+    public int getAwakeLevel() {
+        return awakeLevel;
     }
 }

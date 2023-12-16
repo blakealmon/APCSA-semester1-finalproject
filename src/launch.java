@@ -2,7 +2,7 @@ package src;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-import src.playerStats.stats;
+import src.playerStats.Stats;
 import src.storyline.tutorial;
 
 public class launch {
