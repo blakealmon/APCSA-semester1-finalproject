@@ -8,8 +8,20 @@ public class Item {
         return consumable;
     }
 
-    public void setConsumable(boolean consumable, String name) {
+    public Item(boolean consumable, String name) {
         this.consumable = consumable;
+        this.name = name;
+    }
+
+    public void setConsumable(boolean consumable) {
+        this.consumable = consumable;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
