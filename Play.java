@@ -3,16 +3,70 @@ import src.GameState;
 import java.util.Scanner;
 import src.Room;
 import src.Items.*;
+import java.util.concurrent.TimeUnit;
+
 public class Play {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Stats stats = new Stats();
         GameState gameState = new GameState();
         Room[][] map = gameState.getMap();
         Room currentRoom = map[stats.getY()][stats.getX()];
         Scanner scanner = new Scanner(System.in);
 
-        //beginning message
-        System.out.println("You've just entered a house as Santa for Christmas. But watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled. Venture throughout the map and find the cookies they left out in the kitchen by finding items to help you get past the dangerous room. Good luck, and Merry Christmas!");
+        // beginning message
+        String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies they left out in the kitchen by finding items to help you get past the dangerous room.\nGood luck, and Merry Christmas!\nType 1 to begin!\n";
+            
+        // printing beginning message
+        for (int count=0; count < welcomeMessage.length(); count++){
+            System.out.print(welcomeMessage.charAt(count));
+            TimeUnit.MILLISECONDS.sleep(40);
+        }
+
+        // beginning scanner
+        Scanner beginningScanner = new Scanner(System.in);
+
+        // scanner for response
+        int beginningResponse = beginningScanner.nextInt();
+
+        //closing scanner
+        beginningScanner.close();
+
+        if(beginningResponse == 1){
+
+            // loading effect
+            clearScreen();
+
+            String loading[] = {"Loading", "Loading.", "Loading..", "Loading..."};
+
+            for(int i = 0; i < 3; i++){
+
+                clearScreen();
+                System.out.println(loading[0]);
+                TimeUnit.MILLISECONDS.sleep(400);
+
+                clearScreen();
+                System.out.println(loading[1]);
+                TimeUnit.MILLISECONDS.sleep(400);
+
+                clearScreen();
+                System.out.println(loading[2]);
+                TimeUnit.MILLISECONDS.sleep(400);
+
+                clearScreen();
+                System.out.println(loading[3]);
+                TimeUnit.MILLISECONDS.sleep(400);
+            }
+
+            clearScreen();
+        }
+
+        // closes the program if the answer is not 1
+        else{
+            System.exit(0);
+        }
+
+
+
 
         while (gameState.getEnd() == false) {
             currentRoom = map[stats.getY()][stats.getX()];
@@ -63,41 +117,170 @@ public class Play {
                     }
                 }
 
-                System.out.println("What would you like to do?");
-                System.out.println("1: Check Hotbar");
-                System.out.println("2: Consume an Item");
-                System.out.println("3 Move to a new room");
+                
+
+
+                // ------ PRINTING OPTIONS TO CHOOSE FROM --------
+
+                
+
+                // clears console
+        
+
+                String beginningQuestion = "What would you like to do?\n";
+               
+                for (int count=0; count < beginningQuestion.length(); count++){
+                    System.out.print(beginningQuestion.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
+
+                String hotbarQuestion  = "1: Check Hotbar\n";
+
+                for (int count=0; count < hotbarQuestion.length(); count++){
+                    System.out.print(hotbarQuestion.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
+
+                String consumeItemQuestion = "2: Consume an Item\n";
+
+                for (int count=0; count < consumeItemQuestion.length(); count++){
+                    System.out.print(consumeItemQuestion.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
+
+                String moveRoomQuestion = "3: Move to a new room\n";
+
+                for (int count=0; count < moveRoomQuestion.length(); count++){
+                    System.out.print(moveRoomQuestion.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
+
+                // --------------------------------------------------------
+
 
                 String response = scanner.nextLine();
+
                 if (response.equals("1")) {
+
+                    clearScreen();
+
                     stats.displayHotBar();
-                } else if (response.equals("2")) {
+                } 
+                
+                else if (response.equals("2")) {
+
+                    clearScreen();
+
                     stats.displayHotBar();
-                    System.out.println("Which item would you like to consume (0, 1, or 2)");
+
+                    // --- WHICH ITEM QUESTION ---
+
+                    clearScreen();
+                    
+                    String whichItemQuestion = "Which item would you like to consume (0, 1, or 2)\n";
+
+                    for (int count=0; count < whichItemQuestion.length(); count++){
+                        System.out.print(whichItemQuestion.charAt(count));
+                        TimeUnit.MILLISECONDS.sleep(40);
+                    }
+
+                    // ------------------
+
                     int index = scanner.nextInt();
+
                     scanner.nextLine();
                     Item item = stats.getHotbar()[index];
+
+                    clearScreen();
+
+                    // NOT VALID INDEX FOR HOT BAR
                     if (index > 2 || index < 0) {
-                        System.out.println("that is not a valid index");
+
+                        // PRINTING MESSAGE
+                        clearScreen();
+
+                        String hotbarNotValidIndex = "that is not a valid index\n";
+
+                        for (int count=0; count < hotbarNotValidIndex.length(); count++){
+                            System.out.print(hotbarNotValidIndex.charAt(count));
+                            TimeUnit.MILLISECONDS.sleep(40);
+                        }
+
+                        TimeUnit.MILLISECONDS.sleep(1000);
+
+                        clearScreen();
                     }
+
+                    // SHOWS IF SLOT IS EMPTY
                     if (item == null) {
-                        System.out.println("that's an empty slot");
-                    } else if (item instanceof Cookie) {
+
+                        // PRINTING 
+                        clearScreen();
+
+                        String hotbarEmptySlotCheck = "that's an empty slot\n";
+
+                        for (int count=0; count < hotbarEmptySlotCheck.length(); count++){
+                            System.out.print(hotbarEmptySlotCheck.charAt(count));
+                            TimeUnit.MILLISECONDS.sleep(40);
+                        }
+
+                        TimeUnit.MILLISECONDS.sleep(1000);
+
+                        clearScreen();
+                    } 
+                    // if cookie ->
+                    else if (item instanceof Cookie) {
+
                         System.out.println(((Cookie) item).consume(stats));
-                    } else if (item instanceof Note) {
+                    } 
+                    // if note ->
+                    else if (item instanceof Note) {
+
                         ((Note) item).consume();
-                    }  else if (item instanceof Flashlight) {
-                        System.out.println("enter a direction for the flashlight to point in (N, E, S, W)");
+                    }  
+
+                    // if flashlight ->
+                    else if (item instanceof Flashlight) {
+
+                        // printing
+
+                        clearScreen();
+
+                        String flashlightDirectionPrint = "enter a direction for the flashlight to point in (N, E, S, W)\n";
+
+                        for (int count=0; count < flashlightDirectionPrint.length(); count++){
+                            System.out.print(flashlightDirectionPrint.charAt(count));
+                            TimeUnit.MILLISECONDS.sleep(40);
+                        }
+                        
+                        // action of using flashlight
                         String direction = scanner.nextLine();
                         System.out.println(((Flashlight) item).consume(stats.getX(), stats.getY(), direction, map));
-                    } else if (item instanceof Slippers) {
+                    } 
+
+                    // if slippers ->
+                    else if (item instanceof Slippers) {
                         ((Slippers) item).consume(stats);
                     }
+
                     stats.getHotbar()[index] = null;
-                } else if (response.equals("3")) {
+                } 
+                // option 3 -> move
+                else if (response.equals("3")) {
                     move(scanner, stats, map, stats.getX(), stats.getY());
-                } else {
-                    System.out.println("that is not a valid option");
+                } 
+                // non-valid optino ->
+                else {
+
+                    // printing
+                    clearScreen();
+
+                    String mainOptionsNotValid = "that is not a valid option";
+
+                    for (int count=0; count < mainOptionsNotValid.length(); count++){
+                        System.out.print(mainOptionsNotValid.charAt(count));
+                        TimeUnit.MILLISECONDS.sleep(40);
+                    }
                 }
             }
 
@@ -155,4 +338,11 @@ public class Play {
             }
         }
     }
+
+
+    //  METHOD THAT CLEARS CONSOLE
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
 }

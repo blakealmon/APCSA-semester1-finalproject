@@ -1,5 +1,8 @@
 package src.playerStats;
 
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 import src.Items.Item;
 
 public class Stats {
@@ -58,17 +61,46 @@ public class Stats {
         return cookie;
     }
 
-    public void displayHotBar() {
+    public void displayHotBar() throws InterruptedException {
         for (int i = 0; i < hotbar.length; i++) {
             if (hotbar[i] == null){
-                System.out.println(i + ": " + "empty");
+
+                // printing 
+                String isEmptyPrint = i + ": " + "empty\n";
+
+                for (int count=0; count < isEmptyPrint.length(); count++){
+                    System.out.print(isEmptyPrint.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
+
+                
             } else {
-                System.out.println(i + ": " + hotbar[i].getName());
+
+                // printing
+                String isItemPrint = i + ": " + hotbar[i].getName() + "\n\n";
+
+                for (int count=0; count < isItemPrint.length(); count++){
+                    System.out.print(isItemPrint.charAt(count));
+                    TimeUnit.MILLISECONDS.sleep(40);
+                }
             }
+
+            
         }
+
+
+
     }
 
     public void swapHotbar(int x, Item item) {
         hotbar[x] = item;
     }
+
+    //  METHOD THAT CLEARS CONSOLE
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
+
+    
 }
