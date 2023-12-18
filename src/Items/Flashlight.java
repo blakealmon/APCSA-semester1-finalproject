@@ -12,25 +12,25 @@ public class Flashlight extends Item {
     //consume function for flashlight (look one step forward in any direction)
     //takes current x and y value and, a direction, and the curent gamestate
     public String consume(int x, int y, String direction, Room[][] map) {
-        if (direction == "N") {
+        if (direction.equals("N")) {
             if (map[y - 1][x].isDangerous()) {
                 return "that room has someone in it";
             } else {
                 return "that room is safe to go into";
             }
-        } else if (direction == "S") {
+        } else if (direction.equals("S")) {
             if (map[y + 1][x].isDangerous()) {
                 return "that room has someone in it";
             } else {
                 return "that room is safe to go into";
             }
-        } else if (direction == "E") {
+        } else if (direction.equals("E")) {
             if (map[y][x + 1].isDangerous()) {
                 return "that room has someone in it";
             } else {
                 return "that room is safe to go into";
             }
-        } else if (direction == "W") {
+        } else if (direction.equals("W")) {
             if (map[y][x - 1].isDangerous()) {
                 return "that room has someone in it";
             }

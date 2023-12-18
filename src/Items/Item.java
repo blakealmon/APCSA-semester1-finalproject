@@ -29,5 +29,9 @@ public class Item {
         this.consumable = consumable;
     }
 
+    public String toString() {
+        return "this is the base item";
+    }
+
     
 }

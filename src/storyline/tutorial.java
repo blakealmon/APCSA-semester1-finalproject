@@ -1,77 +1,77 @@
-package src.storyline;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+// package src.storyline;
+// import java.util.Scanner;
+// import java.util.concurrent.TimeUnit;
 
-import src.launch;
-import src.playerStats.*;
+// import src.launch;
+// import src.playerStats.*;
 
-public class tutorial {
+// public class tutorial {
     
-    private boolean begin;
-    private Scanner scanner;
+//     private boolean begin;
+//     private Scanner scanner;
 
-    public tutorial(boolean begin, Scanner scanner){
-        this.begin = begin;
-        this.scanner = scanner;
-    }
+//     public tutorial(boolean begin, Scanner scanner){
+//         this.begin = begin;
+//         this.scanner = scanner;
+//     }
 
 
-    public boolean getBegin(){
-        return begin;
-    }
-    public void tutorialStart() throws InterruptedException{
+//     public boolean getBegin(){
+//         return begin;
+//     }
+//     public void tutorialStart() throws InterruptedException{
 
-        String welcome = "welcome to the game!\n";
+//         String welcome = "welcome to the game!\n";
 
-        for (int count=0; count < welcome.length(); count++){
-            System.out.print(welcome.charAt(count));
-            TimeUnit.MILLISECONDS.sleep(40);
-        }
+//         for (int count=0; count < welcome.length(); count++){
+//             System.out.print(welcome.charAt(count));
+//             TimeUnit.MILLISECONDS.sleep(40);
+//         }
         
 
-        String statsHowTo = "You may type 'stats' anytime to see your stats! \nTry it now by typing 'stats' into the console!\n";
+//         String statsHowTo = "You may type 'items' anytime to see your stats! \nTry it now by typing 'stats' into the console!\n";
 
-        for (int count=0; count < statsHowTo.length(); count++){
-            System.out.print(statsHowTo.charAt(count));
-            TimeUnit.MILLISECONDS.sleep(40);
-        }
+//         for (int count=0; count < statsHowTo.length(); count++){
+//             System.out.print(statsHowTo.charAt(count));
+//             TimeUnit.MILLISECONDS.sleep(40);
+//         }
 
 
-        // WILL ADD GAME LOOP AND REMOVE THIS IF STATEMENT FOR STATS
+//         // WILL ADD GAME LOOP AND REMOVE THIS IF STATEMENT FOR STATS
 
-        String statsInput = scanner.nextLine();
+//         String statsInput = scanner.nextLine();
 
-        if(statsInput.equals("stats")){
-            Stats myStats = new Stats();
+//         if(statsInput.equals("stats")){
+//             Stats myStats = new Stats();
 
-            String playerStats = myStats.toString();
+//             String playerStats = myStats.toString();
 
             
 
-            for (int count=0; count < playerStats.length(); count++){
-                System.out.print(playerStats.charAt(count));
-                TimeUnit.MILLISECONDS.sleep(40);
-            }
-        }
-        else{
+//             for (int count=0; count < playerStats.length(); count++){
+//                 System.out.print(playerStats.charAt(count));
+//                 TimeUnit.MILLISECONDS.sleep(40);
+//             }
+//         }
+//         else{
             
-            clearScreen();
+//             clearScreen();
 
-            String badInput = "bad input. Try again";
+//             String badInput = "bad input. Try again";
 
-            for (int count=0; count < badInput.length(); count++){
-                System.out.print(statsHowTo.charAt(count));
-                TimeUnit.MILLISECONDS.sleep(40);
-            }
+//             for (int count=0; count < badInput.length(); count++){
+//                 System.out.print(statsHowTo.charAt(count));
+//                 TimeUnit.MILLISECONDS.sleep(40);
+//             }
 
-             TimeUnit.MILLISECONDS.sleep(750);
+//              TimeUnit.MILLISECONDS.sleep(750);
 
-             tutorialStart();
-        }
-    }
+//              tutorialStart();
+//         }
+//     }
 
-    public static void clearScreen() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }  
-}
+//     public static void clearScreen() {  
+//         System.out.print("\033[H\033[2J");  
+//         System.out.flush();  
+//     }  
+// }

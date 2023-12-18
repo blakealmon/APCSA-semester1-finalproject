@@ -42,6 +42,10 @@ public class Room {
         return dangerous;
     }
 
+    public boolean hasItem() {
+        return roomItem != null;
+    }
+
 
     //setters
     public void setRoomName(String roomName) {

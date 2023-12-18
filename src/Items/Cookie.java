@@ -9,8 +9,9 @@ public class Cookie extends Item {
         super(true, "cookie");
     }
 
-    //consume tje cookie
+    //consume the cookie
     public String consume(Stats stats) {
+        stats.setCookie(true);
         //subject to change
         return "Congratulations, you've found the cookie of the house. Eat the cookie and return back through the chimney without being spotted. Hint: take note of the items the kids wanted";
     }

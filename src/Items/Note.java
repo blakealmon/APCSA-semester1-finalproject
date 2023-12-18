@@ -10,8 +10,8 @@ public class Note extends Item{
         this.wish = wish;
     }
     
-    public String consume() {
-        return message;
+    public void consume() {
+        System.out.println(message);
     }
 
     //getters
