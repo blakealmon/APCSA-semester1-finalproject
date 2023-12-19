@@ -31,4 +31,8 @@ public class Note extends Item{
     public void setWish(String wish) {
         this.wish = wish;
     }
+
+    public String toString() {
+        return "this a valuable notes from the kid (hint: remember the gift, it'll be important later on)";
+    }
 }

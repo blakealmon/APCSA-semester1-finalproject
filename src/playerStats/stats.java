@@ -1,6 +1,5 @@
 package src.playerStats;
 
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import src.Items.Item;
@@ -77,7 +76,7 @@ public class Stats {
             } else {
 
                 // printing
-                String isItemPrint = i + ": " + hotbar[i].getName() + "\n\n";
+                String isItemPrint = i + ": " + hotbar[i].getName() + "\n";
 
                 for (int count=0; count < isItemPrint.length(); count++){
                     System.out.print(isItemPrint.charAt(count));

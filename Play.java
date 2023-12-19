@@ -14,22 +14,20 @@ public class Play {
         Scanner scanner = new Scanner(System.in);
 
         // beginning message
-        String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies they left out in the kitchen by finding items to help you get past the dangerous room.\nGood luck, and Merry Christmas!\nType 1 to begin!\n";
+        String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies they left out in the kitchen by finding items to help you get past the dangerous rooms.\nGood luck, and Merry Christmas!\nType 1 to begin!";
             
         // printing beginning message
-        for (int count=0; count < welcomeMessage.length(); count++){
-            System.out.print(welcomeMessage.charAt(count));
-            TimeUnit.MILLISECONDS.sleep(40);
-        }
+        printWithDelay(welcomeMessage);
 
         // beginning scanner
-        Scanner beginningScanner = new Scanner(System.in);
+        // Scanner beginningScanner = new Scanner(System.in);
 
         // scanner for response
-        int beginningResponse = beginningScanner.nextInt();
+        int beginningResponse = scanner.nextInt();
+        scanner.nextLine();
 
         //closing scanner
-        beginningScanner.close();
+        // beginningScanner.close();
 
         if(beginningResponse == 1){
 
@@ -74,7 +72,7 @@ public class Play {
             if (stats.getX() == 0 && stats.getY() == 0 && stats.getCookie()) {
                 boolean present1 = false;
                 while (present1 == false) {
-                    System.out.println("Santa, it's time for you to leave some presents. What was the present that the first kid asked for? ");
+                    printWithDelay("Santa, it's time for you to leave some presents. What was the present that the first kid asked for? ");
                     String gift1 = scanner.nextLine();
                     if (gift1.equals("laptop")) {
                         present1 = true;
@@ -82,33 +80,33 @@ public class Play {
                 }
                 boolean present2 = false;
                 while (present2 == false) {
-                    System.out.println(" What was the present that the second kid asked for? ");
+                    printWithDelay(" What was the present that the second kid asked for? ");
                     String gift2 = scanner.nextLine();
                     if (gift2.equals("pokemon cards")) {
                         present2 = true;
                     }
                 }
-                System.out.println("Congratulations, you ate the cookie and have succesfully left both corret presents for the kids. You're made these kids a wonderful christmas.");
+                printWithDelay("Congratulations, you ate the cookie and have succesfully left both corret presents for the kids. You're made these kids a wonderful christmas.");
             } else {
                 if (currentRoom.isDangerous()) {
                     if (stats.isSilent()) {
-                        System.out.println("close call, you've lost your silence and need to find a new room quickly");
+                        printWithDelay("close call, you've lost your silence and need to find a new room quickly");
                         stats.setSilent(false);
                         move(scanner, stats, map, stats.getX(), stats.getY());
                     } else {
-                        System.out.println("You've been spotted by the person in the room. Yikes, now Christmas is ruined ):");
+                        printWithDelay("You've been spotted by the person in the room. Yikes, now Christmas is ruined ):");
                         break;
                     }
                 }
 
                 if (currentRoom.hasItem()) {
                     if (currentRoom.getRoomItem().isConsumable()){
-                        System.out.println("This room has an item! Would you like to claim it? y/n note: choosing a index with an item will overwrite that item and it will not be reclaimable");
+                        printWithDelay("This room has an item! Would you like to claim it? y/n note: choosing a index with an item will overwrite that item and it will not be reclaimable");
                         String answer = scanner.nextLine();
                         if (answer.equals("y")) {
-                            System.out.println(currentRoom.getRoomItem().toString());
+                            printWithDelay(currentRoom.getRoomItem().toString());
                             stats.displayHotBar();
-                            System.out.println("Please enter an index from 0 to 2");
+                            printWithDelay("Please enter an index from 0 to 2");
                             int index = scanner.nextInt();
                             scanner.nextLine();
                             stats.swapHotbar(index, currentRoom.getRoomItem());
@@ -127,36 +125,24 @@ public class Play {
                 // clears console
         
 
-                String beginningQuestion = "What would you like to do?\n";
+                String beginningQuestion = "What would you like to do?";
                
-                for (int count=0; count < beginningQuestion.length(); count++){
-                    System.out.print(beginningQuestion.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
+                printWithDelay(beginningQuestion);
 
-                String hotbarQuestion  = "1: Check Hotbar\n";
+                String hotbarQuestion  = "1: Check Hotbar";
 
-                for (int count=0; count < hotbarQuestion.length(); count++){
-                    System.out.print(hotbarQuestion.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
+                printWithDelay(hotbarQuestion);
 
-                String consumeItemQuestion = "2: Consume an Item\n";
+                String consumeItemQuestion = "2: Consume an Item";
 
-                for (int count=0; count < consumeItemQuestion.length(); count++){
-                    System.out.print(consumeItemQuestion.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
+                printWithDelay(consumeItemQuestion);
 
-                String moveRoomQuestion = "3: Move to a new room\n";
+                String moveRoomQuestion = "3: Move to a new room";
 
-                for (int count=0; count < moveRoomQuestion.length(); count++){
-                    System.out.print(moveRoomQuestion.charAt(count));
-                    TimeUnit.MILLISECONDS.sleep(40);
-                }
+                printWithDelay(moveRoomQuestion);
+
 
                 // --------------------------------------------------------
-
 
                 String response = scanner.nextLine();
 
@@ -177,21 +163,19 @@ public class Play {
 
                     clearScreen();
                     
-                    String whichItemQuestion = "Which item would you like to consume (0, 1, or 2)\n";
+                    String whichItemQuestion = "Which item would you like to consume (0, 1, or 2)";
 
-                    for (int count=0; count < whichItemQuestion.length(); count++){
-                        System.out.print(whichItemQuestion.charAt(count));
-                        TimeUnit.MILLISECONDS.sleep(40);
-                    }
+                    printWithDelay(whichItemQuestion);
 
                     // ------------------
 
                     int index = scanner.nextInt();
-
                     scanner.nextLine();
+
                     Item item = stats.getHotbar()[index];
 
-                    clearScreen();
+                    //clearing screen makes it hard for user to remember what index they wanted
+                    // clearScreen();
 
                     // NOT VALID INDEX FOR HOT BAR
                     if (index > 2 || index < 0) {
@@ -199,12 +183,9 @@ public class Play {
                         // PRINTING MESSAGE
                         clearScreen();
 
-                        String hotbarNotValidIndex = "that is not a valid index\n";
+                        String hotbarNotValidIndex = "that is not a valid index";
 
-                        for (int count=0; count < hotbarNotValidIndex.length(); count++){
-                            System.out.print(hotbarNotValidIndex.charAt(count));
-                            TimeUnit.MILLISECONDS.sleep(40);
-                        }
+                        printWithDelay(hotbarNotValidIndex);
 
                         TimeUnit.MILLISECONDS.sleep(1000);
 
@@ -217,12 +198,9 @@ public class Play {
                         // PRINTING 
                         clearScreen();
 
-                        String hotbarEmptySlotCheck = "that's an empty slot\n";
+                        String hotbarEmptySlotCheck = "that's an empty slot";
 
-                        for (int count=0; count < hotbarEmptySlotCheck.length(); count++){
-                            System.out.print(hotbarEmptySlotCheck.charAt(count));
-                            TimeUnit.MILLISECONDS.sleep(40);
-                        }
+                        printWithDelay(hotbarEmptySlotCheck);
 
                         TimeUnit.MILLISECONDS.sleep(1000);
 
@@ -231,7 +209,7 @@ public class Play {
                     // if cookie ->
                     else if (item instanceof Cookie) {
 
-                        System.out.println(((Cookie) item).consume(stats));
+                        printWithDelay(((Cookie) item).consume(stats));
                     } 
                     // if note ->
                     else if (item instanceof Note) {
@@ -246,16 +224,13 @@ public class Play {
 
                         clearScreen();
 
-                        String flashlightDirectionPrint = "enter a direction for the flashlight to point in (N, E, S, W)\n";
+                        String flashlightDirectionPrint = "enter a direction for the flashlight to point in (N, E, S, W)";
 
-                        for (int count=0; count < flashlightDirectionPrint.length(); count++){
-                            System.out.print(flashlightDirectionPrint.charAt(count));
-                            TimeUnit.MILLISECONDS.sleep(40);
-                        }
+                        printWithDelay(flashlightDirectionPrint);
                         
                         // action of using flashlight
                         String direction = scanner.nextLine();
-                        System.out.println(((Flashlight) item).consume(stats.getX(), stats.getY(), direction, map));
+                        printWithDelay(((Flashlight) item).consume(stats.getX(), stats.getY(), direction, map));
                     } 
 
                     // if slippers ->
@@ -277,10 +252,7 @@ public class Play {
 
                     String mainOptionsNotValid = "that is not a valid option";
 
-                    for (int count=0; count < mainOptionsNotValid.length(); count++){
-                        System.out.print(mainOptionsNotValid.charAt(count));
-                        TimeUnit.MILLISECONDS.sleep(40);
-                    }
+                    printWithDelay(mainOptionsNotValid);
                 }
             }
 
@@ -290,51 +262,51 @@ public class Play {
         scanner.close();
     }
 
-    public static void move(Scanner scanner, Stats stats, Room[][] map, int x, int y) {
+    public static void move(Scanner scanner, Stats stats, Room[][] map, int x, int y) throws InterruptedException{
         boolean valid = false;
         while (valid == false) {
             try {
-                System.out.println("Enter a direction, use N, E, S, or W");
+                printWithDelay("Enter a direction, use N, E, S, or W");
                 String direction = scanner.nextLine();
                 if (direction.equals("N")) {
                     if (map[y - 1][x] == null) {
-                        System.out.println("This is a wall");
+                        printWithDelay("This is a wall");
                     } else {
                         stats.setY(stats.getY() - 1);
-                        System.out.println("Now you are currently at (" + stats.getX() +  ", " + stats.getY() + ")");
-                        System.out.println(map[stats.getY()][stats.getX()].getDescription());
+                        printWithDelay("Now you are currently at (" + stats.getX() +  ", " + stats.getY() + ")");
+                        printWithDelay(map[stats.getY()][stats.getX()].getDescription());
                         valid = true;
                     }
                 } else if (direction.equals("S")) {
                     if (map[y + 1][x] == null) {
-                        System.out.println("This is a wall");
+                        printWithDelay("This is a wall");
                     } else {
                         stats.setY(stats.getY() + 1);
-                        System.out.println("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
-                        System.out.println(map[stats.getY()][stats.getX()].getDescription());
+                        printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
+                        printWithDelay(map[stats.getY()][stats.getX()].getDescription());
                         valid = true;
                     }
                 } else if (direction.equals("E")) {
                     if (map[y][x + 1] == null) {
-                        System.out.println("This is a wall");
+                        printWithDelay("This is a wall");
                     } else {
                         stats.setX(stats.getX() + 1);
-                        System.out.println("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
-                        System.out.println(map[stats.getY()][stats.getX()].getDescription());
+                        printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
+                        printWithDelay(map[stats.getY()][stats.getX()].getDescription());
                         valid = true;
                     }
                 } else if (direction.equals("W")) {
                     if (map[y][x - 1] == null) {
-                        System.out.println("This is a wall");
+                        printWithDelay("This is a wall");
                     } else {
                         valid = true;
                         stats.setX(stats.getX() - 1);
-                        System.out.println("Now you are currently at ( " + stats.getX() +  ", " + stats.getY() + ")");
-                        System.out.println(map[stats.getY()][stats.getX()].getDescription());
+                        printWithDelay("Now you are currently at ( " + stats.getX() +  ", " + stats.getY() + ")");
+                        printWithDelay(map[stats.getY()][stats.getX()].getDescription());
                     }
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("That is a wall");
+                printWithDelay("That is a wall");
             }
         }
     }
@@ -345,4 +317,12 @@ public class Play {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }  
+
+    public static void printWithDelay(String x) throws InterruptedException{
+        for (int count=0; count < x.length(); count++){
+            System.out.print(x.charAt(count));
+            TimeUnit.MILLISECONDS.sleep(40);
+        }
+        System.out.println();
+    }
 }
