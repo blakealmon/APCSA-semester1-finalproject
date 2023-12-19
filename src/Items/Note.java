@@ -1,19 +1,17 @@
 package src.Items;
 
 public class Note extends Item{
+    //attributes
     private String message;
     private String wish;
 
+    //constructor
     public Note(String message, String wish) {
         super(true, "note");
         this.message = message;
         this.wish = wish;
     }
     
-    public void consume() {
-        System.out.println(message);
-    }
-
     //getters
     public String getMessage() {
         return message;
@@ -32,7 +30,8 @@ public class Note extends Item{
         this.wish = wish;
     }
 
+    //description of item
     public String toString() {
-        return "this a valuable notes from the kid (hint: remember the gift, it'll be important later on)";
+        return "this a valuable note from the kid (hint: remember the gift, it'll be important later on)";
     }
 }

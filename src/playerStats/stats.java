@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import src.Items.Item;
 
 public class Stats {
+    //attributes
     private int awakeLevel = 10;
     private Item[] hotbar = new Item[3];
     private int x = 0;
@@ -12,6 +13,8 @@ public class Stats {
     private boolean silent = false;
     private boolean cookie = false;
 
+
+    //setters
     public void setCookie(boolean cookie) {
         this.cookie = cookie;
     }
@@ -36,6 +39,8 @@ public class Stats {
         this.silent = silent;
     }
 
+
+    //getters
     public int getAwakeLevel() {
         return awakeLevel;
     }
@@ -60,6 +65,7 @@ public class Stats {
         return cookie;
     }
 
+    //loops through hotbar and displays each item
     public void displayHotBar() throws InterruptedException {
         for (int i = 0; i < hotbar.length; i++) {
             if (hotbar[i] == null){
@@ -91,6 +97,7 @@ public class Stats {
 
     }
 
+    //puts item in current slop
     public void swapHotbar(int x, Item item) {
         hotbar[x] = item;
     }
