@@ -17,7 +17,7 @@ public class Play {
         Scanner scanner = new Scanner(System.in);
 
         // beginning message
-        String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies they left out in the kitchen by finding items to help you get past the dangerous rooms.\nGood luck, and Merry Christmas!\nType 1 to begin!";
+        String welcomeMessage = "You've just entered a house as Santa for Christmas. \nBut watch out, you must not wake up the kids in their rooms, otherwise the surprise will be spoiled.\nVenture throughout the map and find the cookies and letters that they left out by finding and using items to help you get past the dangerous rooms.\nGood luck, and Merry Christmas!\nType 1 to begin!";
             
         // printing beginning message
         printWithDelay(welcomeMessage);
@@ -91,7 +91,9 @@ public class Play {
                     }
                 }
                 //win sequence
-                printWithDelay("Congratulations, you ate the cookie and have succesfully left both correct presents for the kids. You're made these kids a wonderful christmas.");
+                printWithDelay("Congratulations, you ate the cookie and have succesfully left both correct presents for the kids. You've made these kids a wonderful christmas.");
+                printWithDelay(stats.endMessage());
+
             } else {
                 //end conditions not met yet
 
@@ -105,6 +107,7 @@ public class Play {
                     //user loses if in dangerous room without silent item used
                     } else {
                         printWithDelay("You've been spotted by the person in the room. Yikes, now Christmas is ruined ):");
+                        printWithDelay(stats.endMessage());
                         break;
                     }
                 }
@@ -220,6 +223,7 @@ public class Play {
                     // if note ->
                     else if (item instanceof Note) {
                         printWithDelay(((Note) item).getMessage());
+                        stats.setLettersFound(stats.getLettersFound() + 1);
                     }  
 
                     // if flashlight ->
@@ -287,8 +291,9 @@ public class Play {
                     
                     //valid response
                     } else {
-                        //updates current position
+                        //updates current position and rooms visited
                         stats.setY(stats.getY() - 1);
+                        stats.setRoomsVisited(stats.getRoomsVisited() + 1);
 
                         //prints info about new room and position
                         printWithDelay("Now you are currently at (" + stats.getX() +  ", " + stats.getY() + ")");
@@ -308,6 +313,7 @@ public class Play {
                     } else {
                         //updates position
                         stats.setY(stats.getY() + 1);
+                        stats.setRoomsVisited(stats.getRoomsVisited() + 1);
 
                         //gives new info on room and position
                         printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
@@ -327,6 +333,7 @@ public class Play {
                     } else {
                         //updates position
                         stats.setX(stats.getX() + 1);
+                        stats.setRoomsVisited(stats.getRoomsVisited() + 1);
 
                         //gives new info
                         printWithDelay("Now you are currently at (" + stats.getX() + ", " + stats.getY() + ")");
@@ -346,6 +353,7 @@ public class Play {
                     } else {
                         //updates position   
                         stats.setX(stats.getX() - 1);
+                        stats.setRoomsVisited(stats.getRoomsVisited() + 1);
 
                         //gives new info about room
                         printWithDelay("Now you are currently at ( " + stats.getX() +  ", " + stats.getY() + ")");

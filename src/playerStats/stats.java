@@ -12,7 +12,8 @@ public class Stats {
     private int y = 0;
     private boolean silent = false;
     private boolean cookie = false;
-
+    private int roomsVisited = 0;
+    private int lettersFound = 0;
 
     //setters
     public void setCookie(boolean cookie) {
@@ -39,6 +40,14 @@ public class Stats {
         this.silent = silent;
     }
 
+    public void setRoomsVisited(int roomsVisited) {
+        this.roomsVisited = roomsVisited;
+    }
+
+    public void setLettersFound(int lettersFound) {
+        this.lettersFound = lettersFound;
+    }
+
 
     //getters
     public int getAwakeLevel() {
@@ -63,6 +72,14 @@ public class Stats {
 
     public boolean getCookie() {
         return cookie;
+    }
+
+    public int getRoomsVisited() {
+        return roomsVisited;
+    }
+
+    public int getLettersFound() {
+        return lettersFound;
     }
 
     //loops through hotbar and displays each item
@@ -106,7 +123,11 @@ public class Stats {
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
-    }  
-
+    } 
     
+    
+    //gives some stats about the game
+    public String endMessage() {
+        return "You ended up visiting " + roomsVisited + " rooms " + "and you ended up reading " + lettersFound + " letters written for you from little kids";
+    }
 }
